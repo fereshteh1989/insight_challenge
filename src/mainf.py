@@ -111,7 +111,7 @@ with open(path, encoding="utf8") as csvfile:
             report.addItem(prod_id,dept_id)
 
 #Now adding order and re-order info to the products
-path2 = Path(__file__).parent.resolve().parent/'input/order_products_sub.csv'
+path2 = Path(__file__).parent.resolve().parent/'input/order_products.csv'
 with open(path2) as csvfile:
     order_info = csv.reader(csvfile, delimiter = ',')
     new_count = 0
