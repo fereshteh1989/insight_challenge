@@ -11,7 +11,7 @@ class Report:
   # Create a dictionary for fast access of department id for any given product id
     def addItem(self,prod_id,dept_id):
         self.itemz[prod_id] = dept_id
-  
+
   # Get a department id and return its index in the Report object storage
     def getDeptIndex(self,deptid):
         #Gets department ID, returns department index
@@ -19,7 +19,7 @@ class Report:
             if d.ID == deptid:
                 return self.departments.index(d)
         return 0
-   # Get a product id and return its corresponding department id 
+   # Get a product id and return its corresponding department id
     def getDeptId(self,prod_id):
         if prod_id not in self.itemz.keys():
             return 0
@@ -27,7 +27,7 @@ class Report:
    # Return a sorted list of department ids
     def sortDepts(self):
         return sorted(self.deptIDs)
-   # Create report file and populate 
+   # Create report file and populate
     def makeReport(self):
         deptids = list(self.sortDepts())
         path3 = os.path.abspath("../output/report.csv")
@@ -38,11 +38,11 @@ class Report:
                 ind = self.getDeptIndex(id)
                 self.departments[ind].calcTotals()
                 if self.departments[ind].totalOrder > 0:
-                    reporter.writerow([('%d')%(self.departments[ind].ID)]+[('%d')%(self.departments[ind].totalOrder+self.departments[ind].totalReorder)]+[('%d')%(self.departments[ind].totalOrder)]+[('%s')%(round(self.departments[ind].totalOrder/(self.departments[ind].totalOrder+self.departments[ind].totalReorder),2))])
+                    reporter.writerow([('%d')%(self.departments[ind].ID)]+[('%d')%(self.departments[ind].totalOrder+self.departments[ind].totalReorder)]+[('%d')%(self.departments[ind].totalOrder)]+[('%s')%(round(self.departments[ind].totalReorder/(self.departments[ind].totalOrder+self.departments[ind].totalReorder),2))])
                 else:
                     continue
-				with open(path3, encoding="utf8") as csvfile:
-        		tester = csv.reader(csvfile,delimiter =',')
+        with open(path3, encoding="utf8") as csvfile:
+            tester = csv.reader(csvfile,delimiter =',')
             for row in tester:
                 print(row)
 
@@ -56,7 +56,7 @@ class Product:
         self.ordered = ordered
         self.reordered = reordered
         self.department = dept
-        
+
     # Increase the number of orders and/or reorders for individual produts
     def increase(self,ordered,reordered):
         #print('Increasing order number for product number %d from %d'%(self.ID,self.ordered))
@@ -70,18 +70,18 @@ class Department:
         self.products = []
         self.totalOrder = 0
         self.totalReorder = 0
-        
+
     # Adding a product to the department, object of Product class
     def addProduct(self,product):
         self.products.append(product)
-        
+
     # Get the index of a product using its id, if the product is already added to this department
     def getProdIndex(self,id):
         for p in self.products:
             if p.ID == id:
                 return self.products.index(p)
         return 0
-    
+
     # Calculating the total number of (re)orders for this department
     def calcTotals(self):
         for p in self.products:
