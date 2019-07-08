@@ -31,7 +31,7 @@ class Report:
     def makeReport(self):
         deptids = list(self.sortDepts())
         print(deptids)
-        path3 = Path(__file__).parent.resolve().parent/'output/report.csv'
+        path3 = os.path.abspath("..\\output\\report.csv")
         with open(path3, 'w', newline='') as csvfile:
             reporter = csv.writer(csvfile, delimiter=',', quotechar=',', quoting=csv.QUOTE_MINIMAL)
             reporter.writerow(['department_id'] + ['number_of_orders']+['number_of_first_orders']+['percentage'])
@@ -86,12 +86,11 @@ class Department:
             self.totalReorder +=p.reordered
 import csv
 import os
-from pathlib import Path
 
 report = Report()
 
 #Adding products and departments to the main Report object
-path = Path(__file__).parent.resolve().parent/'input/products.csv'
+path = os.path.abspath("..\\input\\products.csv")
 with open(path, encoding="utf8") as csvfile:
     product_info = csv.DictReader(csvfile)
     for row in product_info:
@@ -111,7 +110,7 @@ with open(path, encoding="utf8") as csvfile:
             report.addItem(prod_id,dept_id)
 
 #Now adding order and re-order info to the individual products
-path2 = Path(__file__).parent.resolve().parent/'input/order_products.csv'
+path2 = os.path.abspath("..\\input\\order_products.csv")
 with open(path2) as csvfile:
     order_info = csv.reader(csvfile, delimiter = ',')
     new_count = 0
