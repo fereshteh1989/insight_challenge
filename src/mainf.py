@@ -41,6 +41,7 @@ class Report:
                     reporter.writerow([('%d')%(self.departments[ind].ID)]+[('%d')%(self.departments[ind].totalOrder+self.departments[ind].totalReorder)]+[('%d')%(self.departments[ind].totalOrder)]+[('%s')%(round(self.departments[ind].totalOrder/(self.departments[ind].totalOrder+self.departments[ind].totalReorder),2))])
                 else:
                     continue
+        
         print('Since the web-based test environment does not seem to "see" my output file, Im reading the info back from the report.csv file and printing them!')
         with open(path3, encoding="utf8") as csvfile:
             tester = csv.reader(csvfile,delimiter =',')
@@ -114,7 +115,7 @@ with open(path, encoding="utf8") as csvfile:
             report.addItem(prod_id,dept_id)
 
 #Now adding order and re-order info to the individual products
-path2 = os.path.abspath("../input/order_products_sub.csv")
+path2 = os.path.abspath("../input/order_products.csv")
 with open(path2) as csvfile:
     order_info = csv.reader(csvfile, delimiter = ',')
     new_count = 0
