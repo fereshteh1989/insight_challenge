@@ -41,6 +41,10 @@ class Report:
                     reporter.writerow([('%d')%(self.departments[ind].ID)]+[('%d')%(self.departments[ind].totalOrder+self.departments[ind].totalReorder)]+[('%d')%(self.departments[ind].totalOrder)]+[('%s')%(round(self.departments[ind].totalOrder/(self.departments[ind].totalOrder+self.departments[ind].totalReorder),2))])
                 else:
                     continue
+				with open(path3, encoding="utf8") as csvfile:
+        		tester = csv.reader(csvfile,delimiter =',')
+            for row in tester:
+                print(row)
 
 
 class Product:
