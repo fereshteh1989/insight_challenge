@@ -30,7 +30,7 @@ class Report:
    # Create report file and populate
     def makeReport(self):
         deptids = list(self.sortDepts())
-        path3 = os.path.abspath("../insight_testsuite/tests/test_1/output/report.csv")
+        path3 = os.path.abspath("../output/report.csv")
         with open(path3, 'w', newline='') as csvfile:
             reporter = csv.writer(csvfile, delimiter=',', quotechar=',', quoting=csv.QUOTE_MINIMAL)
             reporter.writerow(['department_id'] + ['number_of_orders']+['number_of_first_orders']+['percentage'])
