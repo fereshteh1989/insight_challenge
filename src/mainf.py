@@ -30,7 +30,6 @@ class Report:
    # Create report file and populate 
     def makeReport(self):
         deptids = list(self.sortDepts())
-        print(deptids)
         path3 = os.path.abspath("../output/report.csv")
         with open(path3, 'w', newline='') as csvfile:
             reporter = csv.writer(csvfile, delimiter=',', quotechar=',', quoting=csv.QUOTE_MINIMAL)
@@ -39,7 +38,7 @@ class Report:
                 ind = self.getDeptIndex(id)
                 self.departments[ind].calcTotals()
                 if self.departments[ind].totalOrder > 0:
-                    reporter.writerow([('%d')%(self.departments[ind].ID)]+[('%d')%(self.departments[ind].totalOrder+self.departments[ind].totalReorder)]+[('%d')%(self.departments[ind].totalOrder)]+[('%s')%(round(self.departments[ind].totalReorder/(self.departments[ind].totalOrder+self.departments[ind].totalReorder),2))])
+                    reporter.writerow([('%d')%(self.departments[ind].ID)]+[('%d')%(self.departments[ind].totalOrder+self.departments[ind].totalReorder)]+[('%d')%(self.departments[ind].totalOrder)]+[('%s')%(round(self.departments[ind].totalOrder/(self.departments[ind].totalOrder+self.departments[ind].totalReorder),2))])
                 else:
                     continue
 
