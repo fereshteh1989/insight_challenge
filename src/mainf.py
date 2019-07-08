@@ -110,7 +110,7 @@ with open(path, encoding="utf8") as csvfile:
             report.addItem(prod_id,dept_id)
 
 #Now adding order and re-order info to the individual products
-path2 = os.path.abspath("../input/order_products.csv")
+path2 = os.path.abspath("../input/order_products_sub.csv")
 with open(path2) as csvfile:
     order_info = csv.reader(csvfile, delimiter = ',')
     new_count = 0
